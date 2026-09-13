@@ -78,12 +78,12 @@ void Gachapandora_Create(void *data)
 
                     capsuleOffset = 55;
                     for (int32 i = GACHAPANDORA_CAPSULE_COUNT - 1; i >= 0; --i) {
-                        int32 id = 0;
+                        uint32 id = 0;
 
                         Gachapandora->capsuleTypeL[i] = RSDK.Rand(0, 6);
                         id                            = Gachapandora->capsuleTypeL[i] % 3;
 
-                        while (id == Gachapandora->lastCapsuleType && Gachapandora->capsuleCount[id] == 3) {
+                        while ((id == Gachapandora->lastCapsuleType) || Gachapandora->capsuleCount[id] == 3) {
                             Gachapandora->capsuleTypeL[i] = RSDK.Rand(0, 6);
                             id                            = Gachapandora->capsuleTypeL[i] % 3;
                         }
@@ -96,7 +96,7 @@ void Gachapandora_Create(void *data)
                         Gachapandora->capsuleTypeR[i] = RSDK.Rand(0, 6);
                         id                            = Gachapandora->capsuleTypeR[i] % 3;
 
-                        while (id == Gachapandora->lastCapsuleType && i && Gachapandora->capsuleCount[id] == 3) {
+                        while ((id == Gachapandora->lastCapsuleType && i) || Gachapandora->capsuleCount[id] == 3) {
                             Gachapandora->capsuleTypeR[i] = RSDK.Rand(0, 6);
                             id                            = Gachapandora->capsuleTypeR[i] % 3;
                         }
